@@ -57,7 +57,7 @@ export default class ShelterMap extends Component {
             shelters: [],
             selectedMarker: false,
             locate: [],
-            temp: 0
+            temp: null
         }
     }
 
