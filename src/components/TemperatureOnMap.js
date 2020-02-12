@@ -62,7 +62,7 @@ export default class ShelterMap extends Component {
             ],
             selectedMarker: false,
             locate: [],
-            temp: null
+            temp: 'fetching temperature ...'
         };
     };
 
@@ -75,7 +75,6 @@ export default class ShelterMap extends Component {
             return Geocode
                     .fromAddress(value.location.description)
                     .then((response) => {
-                        console.log(response);
                         myArray.push(response);
                         this.setState(prevState => ({
                             locate: [].concat(myArray)
@@ -95,7 +94,9 @@ export default class ShelterMap extends Component {
             .get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=metric&APPID=${appID}`)
             .then((response) => {
                 let temp = response.data.main.temp;
-                this.setState({ temp })
+                setTimeout(() => {
+                    this.setState({ temp });
+                }, 2000);
             });
     };
 
